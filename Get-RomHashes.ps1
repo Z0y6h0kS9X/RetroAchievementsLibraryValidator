@@ -11,10 +11,6 @@ $HASH_OUTPUT_PATH = ''
 $RA_USERNAME = ''
 $RA_API_KEY = ''
 
-# Rename rom files to match the Retroachievements database for all matches found
-# UNUSED
-$RENAME_ROMS_TO_RA_STANDARD = $false
-
 # Match the below systems to the system folders within $ROM_BASE_PATH
 $SYSTEM_TO_FOLDER_MAP = @{
     '32X'                         = ''
@@ -72,6 +68,7 @@ $SYSTEM_TO_FOLDER_MAP = @{
     'WonderSwan'                  = ''
 }
 
+# Gets a full system list from RetroAchievements
 function Get-RASystemsList {
     $ConsolesBasePath = 'https://retroachievements.org/API/API_GetConsoleIDs.php'
     $ConsolesArgs = "z=$RA_USERNAME&y=$RA_API_KEY&a=1&g=1"
@@ -82,6 +79,7 @@ function Get-RASystemsList {
     return ($Consoles | ConvertFrom-Json) | Select-Object ID, Name
 }
 
+# Gets a full game list for a given system from RetroAchievements
 function Get-RAGamesList ([string]$SystemID) {
     $GamesBasePath =  'https://retroachievements.org/API/API_GetGameList.php'
     $GamesArgs = "z=$RA_USERNAME&y=$RA_API_KEY&i=$SystemID&h=1"
@@ -92,6 +90,7 @@ function Get-RAGamesList ([string]$SystemID) {
     return ($Games | ConvertFrom-Json) | Select-Object ID, Title, ConsoleID, ConsoleName, NumAchievements, Hashes
 }
 
+# Create a list of systems where a folder path was provided
 $Systems = [System.Collections.Generic.List[Object]]::New()
 $SYSTEM_TO_FOLDER_MAP.Keys | ForEach-Object {
     If ($SYSTEM_TO_FOLDER_MAP.$_) {
@@ -110,6 +109,7 @@ If ($Systems.Count -lt 1) {
 $PathFound = $False
 $SystemsToRemove = @()
 
+# Remove systems from the list that have invalid paths
 Foreach ($System in $Systems) {
     If (-not(Test-Path -Path "$ROM_BASE_PATH\$($System.SystemFolder)")) {
         Write-Host "Invalid path: $ROM_BASE_PATH\$($System.SystemFolder). Skipping path for hash matching." -ForegroundColor Red
@@ -136,7 +136,10 @@ Foreach ($System in $Systems) {
 
     $RomFiles = Get-ChildItem -Path "$ROM_BASE_PATH\$($System.SystemFolder)" -File
     Foreach ($RomFile in $RomFiles) {
+        # Get the current ROM file hash
         $FileHash = cmd /c "$RAHASHER_PATH\RAHasher.exe" $SystemID $RomFile.FullName
+
+        # If the hash is malformed, set the match to false
         If ($FileHash.Length -ne 32) {
             Write-Host "Unable to parse $($RomFile.Name)" -ForegroundColor Red
             $HashOutputObject.add([PSCustomObject]@{
@@ -152,6 +155,7 @@ Foreach ($System in $Systems) {
             Continue
         }
 
+        # If no RA match was found on the hash, set the match as false
         $RomMatch = $RAGames | Where-Object { $_.hashes -match $FileHash }
         If (($RomMatch | Measure-Object).Count -lt 1) {
             #Write-Host "Bad file hash for $($RomFile.Name)" -ForegroundColor Red
@@ -169,6 +173,7 @@ Foreach ($System in $Systems) {
             Continue
         }
 
+        # If a match is found on the hash, set the match to true and add the RA details to the output
         $HashOutputObject.add([PSCustomObject]@{
             MatchFound = $true
             System = $System.System
@@ -182,4 +187,5 @@ Foreach ($System in $Systems) {
     }
 }
 
+# Output CSV report
 $HashOutputObject | Export-Csv "$HASH_OUTPUT_PATH\RA_HashMapReport.csv" -NoTypeInformation
