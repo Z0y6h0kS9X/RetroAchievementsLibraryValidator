@@ -1,3 +1,7 @@
+#TODO
+# Suppress RAHasher warnings
+# Add write-progress and sub progress
+
 # Path to ROM files
 # ROMs should be contained within folders of each system
 $ROM_BASE_PATH = ''
@@ -29,11 +33,11 @@ $SYSTEM_TO_FOLDER_MAP = @{
     'Dreamcast'                   = ''
     'Elektor TV Games Computer'   = ''
     'Fairchild Channel F'         = ''
-    'Game Boy'                    = ''
-    'Game Boy Advance'            = ''
-    'Game Boy Color'              = ''
+    'Game Boy'                    = 'gb'
+    'Game Boy Advance'            = 'gba'
+    'Game Boy Color'              = 'gbc'
     'Game Gear'                   = ''
-    'GameCube'                    = ''
+    'GameCube'                    = 'gc'
     'Genesis/Mega Drive'          = ''
     'Intellivision'               = ''
     'Interton VC 4000'            = ''
@@ -43,22 +47,22 @@ $SYSTEM_TO_FOLDER_MAP = @{
     'MSX'                         = ''
     'Neo Geo CD'                  = ''
     'Neo Geo Pocket'              = ''
-    'NES/Famicom'                 = ''
-    'Nintendo 64'                 = ''
-    'Nintendo DS'                 = ''
+    'NES/Famicom'                 = 'nes'
+    'Nintendo 64'                 = 'n64'
+    'Nintendo DS'                 = 'nds'
     'Nintendo DSi'                = ''
     'PC Engine CD/TurboGrafx-CD'  = ''
     'PC Engine/TurboGrafx-16'     = ''
     'PC-8000/8800'                = ''
     'PC-FX'                       = ''
-    'PlayStation'                 = ''
-    'PlayStation 2'               = ''
-    'PlayStation Portable'        = ''
+    'PlayStation'                 = 'psx'
+    'PlayStation 2'               = 'ps2'
+    'PlayStation Portable'        = 'psp'
     'Pokemon Mini'                = ''
     'Saturn'                      = ''
     'Sega CD'                     = ''
     'SG-1000'                     = ''
-    'SNES/Super Famicom'          = ''
+    'SNES/Super Famicom'          = 'snes'
     'Standalone'                  = ''
     'Uzebox'                      = ''
     'Vectrex'                     = ''
@@ -92,6 +96,7 @@ function Get-RAGamesList ([string]$SystemID) {
 
 # Create a list of systems where a folder path was provided
 $Systems = [System.Collections.Generic.List[Object]]::New()
+Write-Host "Compiling list of known systems..."
 $SYSTEM_TO_FOLDER_MAP.Keys | ForEach-Object {
     If ($SYSTEM_TO_FOLDER_MAP.$_) {
         $Systems.Add([PSCustomObject]@{
@@ -130,12 +135,17 @@ $RASystems = Get-RASystemsList
 
 $HashOutputObject = [System.Collections.Generic.List[Object]]::New()
 
+$SystemCount = 1
 Foreach ($System in $Systems) {
+    Write-Progress -Activity "Checking $($System.System)..." -Status "$SystemCount of $($Systems.count)" -PercentComplete "$($SystemCount/$Systems.count)" -id 1
+    
     $SystemID = $RASystems | Where-Object { $_.Name -eq $System.System } | Select-Object -ExpandProperty ID
     $RAGames = Get-RAGamesList -SystemID $SystemID
 
     $RomFiles = Get-ChildItem -Path "$ROM_BASE_PATH\$($System.SystemFolder)" -File
+    $GameCount = 1
     Foreach ($RomFile in $RomFiles) {
+        Write-Progress -Activity "Checking $($RomFile.Name)..." -Status "$GameCount of $($RomFiles.count)" -PercentComplete "$($GameCount/$RomFiles.count)" -id 2 -ParentId 1
         # Get the current ROM file hash
         $FileHash = cmd /c "$RAHASHER_PATH\RAHasher.exe" $SystemID $RomFile.FullName
 
@@ -152,6 +162,7 @@ Foreach ($System in $Systems) {
                 RAID = ''
                 CheevoCount = ''
             })
+            $GameCount++
             Continue
         }
 
@@ -169,7 +180,7 @@ Foreach ($System in $Systems) {
                 RAID = ''
                 CheevoCount = ''
             })
-            
+            $GameCount++
             Continue
         }
 
@@ -184,7 +195,9 @@ Foreach ($System in $Systems) {
             RAID = $RomMatch.ID
             CheevoCount = $RomMatch.NumAchievements
         })
+        $GameCount++
     }
+    $SystemCount++
 }
 
 # Output CSV report
