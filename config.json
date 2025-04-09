@@ -1,0 +1,275 @@
+{
+    "LIBRARY_PATH": "",
+    "OUTPUT_DIRECTORY": "",
+    "OUTPUT_MISSING_ONLY": false,
+    "RA_HASHER_PATH": "",
+    "RA_USERNAME": "",
+    "RA_API_KEY": "",
+    "PLATFORM_MAPPING": [
+        {
+            "Platform": "32X",
+            "Aliases":[],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "3DO Interactive Multiplayer",
+            "Aliases":["3do"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Amstrad CPC",
+            "Aliases":["cpc"],
+            "Mapping_Override": ""
+        },
+        {            
+            "Platform": "Apple II",
+            "Aliases":["a2"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Arcade",
+            "Aliases":["arc", "mame", "fbneo"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Arcadia 2001",
+            "Aliases":["a2001"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Arduboy",
+            "Aliases":["ard"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Atari 2600",
+            "Aliases":["2600"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Atari 7800",
+            "Aliases":["7800"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Atari Jaguar",
+            "Aliases":["jag"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Atari Jaguar CD",
+            "Aliases":["jcd"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Atari Lynx",
+            "Aliases":["lynx"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "ColecoVision",
+            "Aliases":["cv"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Dreamcast",
+            "Aliases":["dc"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Elektor TV Games Computer",
+            "Aliases":["elek"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Fairchild Channel F",
+            "Aliases":["chf"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Game Boy",
+            "Aliases":["gb"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Game Boy Advance",
+            "Aliases":["gba"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Game Boy Color",
+            "Aliases":["gbc"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Game Gear",
+            "Aliases":["gg"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "GameCube",
+            "Aliases":["gc", "ngc"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Genesis/Mega Drive",
+            "Aliases":["md", "megadrive", "genesis"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Intellivision",
+            "Aliases":["intv"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Interton VC 4000",
+            "Aliases":["vc4000"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Magnavox Odyssey 2",
+            "Aliases":["mo2"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Master System",
+            "Aliases":["sms"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Mega Duck",
+            "Aliases":["duck"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "MSX",
+            "Aliases":["msx"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Neo Geo CD",
+            "Aliases":["ngcd"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Neo Geo Pocket",
+            "Aliases":[ "ngp"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "NES/Famicom",
+            "Aliases":["nes", "famicom"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Nintendo 64",
+            "Aliases":["n64"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Nintendo DS",
+            "Aliases":["ds", "nds"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Nintendo DSi",
+            "Aliases":["dsi", "ndsi"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "PC Engine CD/TurboGrafx-CD",
+            "Aliases":["pccd"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "PC Engine/TurboGrafx-16",
+            "Aliases":["pce"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "PC-8000/8800",
+            "Aliases":["8088"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "PC-FX",
+            "Aliases":["pc-fx"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "PlayStation",
+            "Aliases":["psx", "ps", "ps1"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "PlayStation 2",
+            "Aliases":["ps2"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "PlayStation Portable",
+            "Aliases":["psp"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Pokemon Mini",
+            "Aliases":["mini"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Saturn",
+            "Aliases":["sat", "saturn"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Sega CD",
+            "Aliases":["scd"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "SG-1000",
+            "Aliases":["sg1000", "sg1k"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "SNES/Super Famicom",
+            "Aliases":["snes", "super-famicom"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Standalone",
+            "Aliases":["exe"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Uzebox",
+            "Aliases":["uze"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Vectrex",
+            "Aliases":["vect"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Virtual Boy",
+            "Aliases":["vb"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "WASM-4",
+            "Aliases":["wasm4"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "Watara Supervision",
+            "Aliases":["wsv"],
+            "Mapping_Override": ""
+        },
+        {
+            "Platform": "WonderSwan",
+            "Aliases":["ws"],
+            "Mapping_Override": ""
+        }
+    ]
+}
