@@ -74,9 +74,7 @@ FUNCTION Get-RASystemsList {
 FUNCTION Get-RAGamesList {
     [CmdletBinding()]
     param (
-        [string]$SystemID,   # System ID to fetch game list for
-        [string]$RA_USERNAME, # RetroAchievements Username (unused here but may be useful later)
-        [string]$RA_API_KEY   # RetroAchievements API Key (unused here but may be useful later)
+        [string]$SystemID   # System ID to fetch game list for
     )
     
     # Define the base URL for the API request
