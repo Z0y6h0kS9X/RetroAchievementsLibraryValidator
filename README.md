@@ -6,15 +6,11 @@ This project aims to make the process of checking the validity of your ROMs for 
 
 Before using the script, ensure you have the following prerequisites set up:
 
-1. **RAHasher**: 
-   - Download RAHasher from [RetroAchievement's GitHub](https://github.com/RetroAchievements/RALibretro/releases).
-   - Make note of the path to `RAHasher.exe`, as this will be needed in the script configuration.
-
-2. **RetroAchievements Account**:
+1. **RetroAchievements Account**:
    - You need a RetroAchievements account and API key.
    - You can find or generate your API key by logging into [RetroAchievements](https://retroachievements.org) and navigating to the control panel: [https://retroachievements.org/controlpanel.php](https://retroachievements.org/controlpanel.php).
 
-3. **PowerShell**:
+2. **PowerShell**:
    - Ensure you are using PowerShell to run this script.
 
 ## Setup
@@ -30,8 +26,6 @@ Before using the script, ensure you have the following prerequisites set up:
 
    - `LibraryPath`: Path to the root folder containing your ROMs. Each system should have its own subfolder within this path.
    - `PlatformMapping`: The name of the subfolders to map to the RetroAchievement platforms.  It will try to enumerate common names automatically.
-   - `RAHasherPath`: Full Path to the `RAHasher.exe` program.
-     - e.g. "C:\Tools\RAHasher.exe"
    - `OutputDirectory`: Path to the folder where the hash report will be exported.
    - `OutputMissingOnly`: (True/False) - Specifies whether to generate a full report, or only return values that do not have a RetroAcheivements match.
    - `APIKey`: Your RetroAchievements API key.
@@ -64,7 +58,7 @@ The resulting CSV report contains the following columns:
 ## Notes
 
 - Ensure that your system folder names in `PlatformMapping` match exactly with the corresponding subfolders in `$LibraryPath`, or are one of the platform's configures aliases.
-- The script uses RAHasher to generate hashes for ROMs. Ensure that RAHasher is correctly installed and accessible from the path specified in `RAHASHER_PATH`.
+- The script uses RAHasher to generate hashes for ROMs.
 
 ## Disclaimer
 
