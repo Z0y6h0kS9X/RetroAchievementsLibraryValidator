@@ -1,5 +1,8 @@
 # Debug Files
 config.dev.psd1
 
+# Output files
+output/
+
 # Executables
 RAHasher.exe

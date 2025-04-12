@@ -145,7 +145,7 @@ Function Get-RomMatch {
     }
 
     # Gets what game has the hash, if applicable
-    $GameMatch = $GameList | Where-Object { $_.Hashes -match $GameHash }
+    $GameMatch = $GameList | Where-Object { $_.Hashes -eq $GameHash }
 
     # Creates the Output Object
     $Entry = [PSCustomObject]@{
