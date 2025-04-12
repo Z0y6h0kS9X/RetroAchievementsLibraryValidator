@@ -9,9 +9,6 @@
     # If true, only output entries that do not have a RetroAchievements match
     OutputMissingOnly = $false
 
-    # Path to the RetroAchievements Hasher tool
-    RAHasherPath      = ''
-
     # RetroAchievements API key
     APIKey            = ''
 
